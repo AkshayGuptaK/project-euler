@@ -17,7 +17,9 @@
         acc
         (recur b c (conj acc c))))))  
 
-(defn- sum-even-fib-to-n [n]
+(defn- sum-even-fib-to-n
+  "Sum of all the even fibonacci numbers up to n"
+  [n]
   (transduce (filter even?) + (fib-up-to-n n)))
 
 (def solution (time (sum-even-fib-to-n (* 4 1000 1000))))
