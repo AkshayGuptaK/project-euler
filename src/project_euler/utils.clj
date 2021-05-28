@@ -31,5 +31,14 @@
        str
        (map (comp read-string str))))
 
-(defn smallest-number-square-less-than [limit]
-  (first (numeric/exact-integer-sqrt limit)))
+(defn smallest-number-square-less-than
+  "Returns the greatest number whose square is less than or equal to `n`"
+  [n]
+  (first (numeric/exact-integer-sqrt n)))
+
+(defn is-prime?
+  "Determines if `n` is prime when provided with all primes smaller than `n`"
+  [n all-smaller-primes]
+  (->> all-smaller-primes
+       (take-while #(<= % (smallest-number-square-less-than n)))
+       (not-any? (partial divides? n))))
