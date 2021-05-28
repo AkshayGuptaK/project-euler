@@ -1,5 +1,4 @@
-(ns project-euler.utils
-  (:require [clojure.math.numeric-tower :as numeric]))
+(ns project-euler.utils)
 
 (defn divides?
   "Returns whether the `divisor` cleanly divides the `dividend`"
@@ -15,3 +14,10 @@
        (#(* % (inc %)))
        (/ 2)
        (* step))))
+
+(defn to-digits
+  "Returns a vector of the digits of `n`"
+  [n]
+  (->> n
+       str
+       (map (comp read-string str))))

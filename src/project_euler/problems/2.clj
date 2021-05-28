@@ -6,8 +6,9 @@
 ;; By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 ;; find the sum of the even-valued terms.
 
-(defn- fib-up-to-n [n]
+(defn- fib-up-to-n
   "Returns all the fibonacci numbers starting with 1 that are smaller than `n`"
+  [n]
   (loop [a 1
          b 2
          acc [a b]]

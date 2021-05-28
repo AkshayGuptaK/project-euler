@@ -1,22 +1,25 @@
 (ns project-euler.problems.3
-  (:require [clojure.math.numeric-tower :as numeric]))
+  (:require [clojure.math.numeric-tower :as numeric]
+            [project-euler.utils :as utils]))
 
 ;; The prime factors of 13195 are 5, 7, 13 and 29.
 ;; What is the largest prime factor of the number 600851475143 ?
 
-(defn- smallest-factor [n]
+(defn- smallest-factor
   "Returns the smallest non-trivial prime factor of `n`.
    If `n` is prime it returns nil."
+  [n]
   (->> n
        numeric/exact-integer-sqrt
        first
        (range 2)
-       (filter #(= 0 (mod n %)))
+       (filter (partial utils/divides? n))
        first))
 
-(defn- prime-factorization [num]
+(defn- prime-factorization
   "Returns all the non-trivial prime factors of `num`.
    If `num` is prime it returns [`num`]."
+  [num]
   (loop [n num
          factors []]
     (if-let [factor (smallest-factor n) ]
