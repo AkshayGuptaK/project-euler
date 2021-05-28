@@ -1,4 +1,5 @@
-(ns project-euler.utils)
+(ns project-euler.utils
+  (:require [clojure.math.numeric-tower :as numeric]))
 
 (defn divides?
   "Returns whether the `divisor` cleanly divides the `dividend`"
@@ -21,3 +22,6 @@
   (->> n
        str
        (map (comp read-string str))))
+
+(defn smallest-number-square-less-than [limit]
+  (first (numeric/exact-integer-sqrt limit)))
