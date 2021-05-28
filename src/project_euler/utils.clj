@@ -16,6 +16,14 @@
        (/ 2)
        (* step))))
 
+(defn sum-of-squares
+  "Returns the sum of squares of numbers from 0 to `n`"
+  [n]
+  (-> n
+      (#(* % (inc %)))
+      (* (inc (* 2 n)))
+      (/ 6)))
+
 (defn to-digits
   "Returns a vector of the digits of `n`"
   [n]
