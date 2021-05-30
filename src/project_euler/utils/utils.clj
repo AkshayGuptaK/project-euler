@@ -1,4 +1,4 @@
-(ns project-euler.utils
+(ns project-euler.utils.utils
   (:require [clojure.math.numeric-tower :as numeric]))
 
 (defn divides?
@@ -7,7 +7,7 @@
   (= 0 (mod dividend divisor)))
 
 (defn sum-to-n
-   "Returns the sum of numbers from 0 to `n` in steps of `step`"
+  "Returns the sum of numbers from 0 to `n` in steps of `step`"
   ([n] (sum-to-n n 1))
   ([n step]
    (-> n
@@ -36,9 +36,15 @@
   [n]
   (first (numeric/exact-integer-sqrt n)))
 
-(defn is-prime?
-  "Determines if `n` is prime when provided with all primes smaller than `n`"
-  [n all-smaller-primes]
-  (->> all-smaller-primes
-       (take-while #(<= % (floor-of-sqrt n)))
-       (not-any? (partial divides? n))))
+(defn ceil-of-sqrt
+  "Returns the smallest number whose square is greater than or equal to `n`"
+  [n]
+  (let [[quotient remainder] (numeric/exact-integer-sqrt n)]
+    (cond-> quotient
+      (> remainder 0) inc)))
+
+(defn first-multiple-greater-than
+  "Returns the first multiple of `n` greater than or equal to the `minimum`"
+  [n minimum]
+  (* n (numeric/ceil (/ minimum n))))
+

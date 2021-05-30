@@ -1,6 +1,6 @@
 (ns project-euler.problems.6
   (:require [clojure.math.numeric-tower :as numeric]
-            [project-euler.utils :as utils]))
+            [project-euler.utils.utils :as utils]))
 
 ;; The sum of the squares of the first ten natural numbers is 385.
 ;; The square of the sum of the first ten natural numbers is 3025.
