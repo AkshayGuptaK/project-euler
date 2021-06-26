@@ -48,3 +48,4 @@
   [n minimum]
   (* n (numeric/ceil (/ minimum n))))
 
+(def fibonacci (map first (iterate (fn [[a b]] [b (+' a b)]) [0 1])))
