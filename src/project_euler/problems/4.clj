@@ -27,7 +27,6 @@
    We exploit the fact that one of the numbers must be a product of 11 to achieve a 10x speedup."
   []
   (->> (for [x (range 100 1000) y (range 10 (quot 1000 11))] (* 11 x y))
-       (filter (every-pred #(> % 99999) is-palindrome?))
-       (apply max)))
+       (transduce (filter (every-pred #(> % 99999) is-palindrome?)) max 0)))
 
 (def solution (time (find-largest-palindrome-product)))
