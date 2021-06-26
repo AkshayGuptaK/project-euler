@@ -1,6 +1,5 @@
 (ns project-euler.problems.9
-  (:require [clojure.math.numeric-tower :as numeric]
-            [project-euler.utils.utils :as utils]))
+  (:require [project-euler.utils.utils :as utils]))
 
 ;; A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 ;; a^2 + b^2 = c^2
@@ -25,8 +24,8 @@
   "Finds integers a and b fulfilling above constraints, then uses them to calculate product of a, b, and c"
   []
   (let [[a b] (transduce (comp (map b-from-a) (filter integer?)) conj [] (range 1 500))
-        c (-> (numeric/expt a 2)
-              (+ (numeric/expt b 2))
+        c (-> (* a a)
+              (+ (* b b))
               utils/floor-of-sqrt)]
     (* a b c)))
 
